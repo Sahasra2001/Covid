@@ -1,0 +1,38 @@
+#include<circuswifilib.h>
+Int TX pin for Wi-Fi module=2;
+Int rxpin for Wi-Fi module=3
+Char ss id [] =”your ss id here”;
+Char pass [] = ‘’your Wi-Fi password here”;
+Int Wi-Fi serial band rate=9600;
+Int debug serial band rate=9600;
+Char token [] =’’your token here”;
+Char analog signal temperature key [] =”944668525”;
+Software serial ss (rxpin for Wi-Fi module, TX pin for Wi-Fi module);
+Circus with Wi-Fi circus (serial, &ss, ss id, pass, debug-yes, keep-alive);
+DHT dht (DHTPIN, DHTTYPE);
+Void setup ()
+{
+Serial begin (debug serial band rate);
+Ss begin (Wi-Fi serial band rate);
+Dht begin ();
+Circus begin ();
+}
+Void loop ()
+{
+Float t=dht real temperature ();
+If (is Nan (t));
+t=-1;
+}
+Delay (3000);
+Circus write (analog signal temperature key, t, token);
+}
+Void loop ()
+{
+Float p=dht real pulse ();
+If (is Nan (p))
+{
+P=-1;
+}
+Delay (3000);
+Circus write (analog signal temperature key, p, token);
+}
